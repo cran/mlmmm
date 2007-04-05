@@ -1,0 +1,50 @@
+Version 0.1-1
+=============
+2007-4-5
+
+DESCRIPTION:
+
+suggests pan
+
+replace ipanem.f with panem2.f
+
+mlm.f:
+
+- rename mkxbeta2 back to mkxbeta
+
+panem2.f:
+
+- line 261, change chfc to chfce
+- initialize posnj (line 1069), ja (line 2231), sum (line 2233)
+
+panemex.s:
+
+- add library(pan)
+- replace em.pan call with em.pan2
+
+panem2ex.s:
+
+- replace assign("occ",occ,frame=1) with assign("ccc",occ,env=.GlobalEnv)
+- comment mlmmm.em and mlmmmbd.em calls
+- add library(mlmmm)
+
+Version 0.1
+===========
+
+2007-4-3
+
+wrap up Splus 4.5 for Windows code by Recai Yucel into mlmmm
+
+ipanem.f:
+
+- line 258, call chfc(p,p,wkpp,err) in prefem() appears to be chfce()
+
+mlm.f: 
+
+- add declaration to epsi in subroutine mlem
+- add 2 to (istfin,mimpy,mkxty,mkbeta,mkeps1,mksigma,mkxbeta,chfce,bkslv,mm,mkyyt,swpobs,getmc,getoc,rsw,swp)
+  to avoid duplication with subroutines in ipanem.f
+
+panemex.s:
+
+- add library(mlmmm)
