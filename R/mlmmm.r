@@ -8,8 +8,6 @@
 #####
 #
 mlmmm.em<-function(y,subj,pred,xcol,zcol,start,maxits=200,eps=.0001){
-	# Calculates ML estimates for the multivariate linear mixed model
-	# described by Schafer (1998).
 	if(any(is.na(pred)))
 		stop("missing values in pred not allowed")
         # change y and pred to matrices, if necessary
@@ -17,8 +15,8 @@ mlmmm.em<-function(y,subj,pred,xcol,zcol,start,maxits=200,eps=.0001){
 	if(is.vector(pred)) pred<-matrix(pred,ncol=1)
 	m<-as.integer(length(table(subj)))
 	ntot<-as.integer(nrow(y))
-	##for now
-	nmax<-as.integer(table(subj))
+	
+	nmax<-as.integer(max(table(subj)))
 	r<-as.integer(ncol(y))
 	p<-length(xcol)
 	q<-length(zcol)
@@ -120,7 +118,7 @@ mlmmm.em<-function(y,subj,pred,xcol,zcol,start,maxits=200,eps=.0001){
 		       maxits,
 		       ggs,
 		       sflag)),
-		     intoutpt= as.integer(rep(0,(4+3*m))),
+		     intoutpt= integer(4+3*m),
 		     dbinput= as.double(c(pred,
 		       y,
 		       sigma,
@@ -128,9 +126,10 @@ mlmmm.em<-function(y,subj,pred,xcol,zcol,start,maxits=200,eps=.0001){
 		       psi,
 		       eps,
 		       epsi)),
-		     dboutput= as.double(rep(0,times=r*nmax*r*nmax*10)),
+		     dboutput= numeric(r*nmax*r*nmax*10),
 	#
 		     w=array(0,c(r*nmax,r*nmax,m)),
+
 		     wkqb2=matrix(0,nmax,r),
 		     vdel=numeric(r*nmax),
         #
@@ -155,7 +154,6 @@ mlmmm.em<-function(y,subj,pred,xcol,zcol,start,maxits=200,eps=.0001){
 		     wkqnm=array(0,c(r*q,r*nmax,m)),
 		     obeta=matrix(0,p,r),
 		     osigma=matrix(0,r,r),opsi=array(0,c(r*q,r*q)),
-                     #####don't know how to calculate llvec
 		     llvec=numeric(as.integer(maxits)),
 		     llovec=numeric(as.integer(maxits)),
 		     wkg=rep(0,ggs),wkgg=matrix(0,ggs,ggs),wkpr=matrix(0,p,r),
@@ -279,7 +277,7 @@ mlmmm.em<-function(y,subj,pred,xcol,zcol,start,maxits=200,eps=.0001){
 			logll=llvec,logoll=llovec,clock=clock)}
 ###########################################################################
 ###########################################################################
-# A new version of em for mlmm that allows psi to be block-diagonal.
+# Version of em for mlmm that allows psi to be block-diagonal.
 # This function looks the same as the mlmem, except that psi is
 # now an array of dim. (q x q x r). Also the workspaces wkqq1 and wkqq2
 # are changed to array(0,c(q,q,r)) and matrix(0,q,q). Two additional
@@ -294,7 +292,7 @@ mlmmmbd.em<-function(y,subj,pred,xcol,zcol,start,maxits=100,eps=.01){
 	m<-as.integer(length(table(subj)))
 	ntot<-as.integer(nrow(y))
 	##for now
-	nmax<-as.integer(table(subj))
+	nmax<-as.integer(max(table(subj)))
 	r<-as.integer(ncol(y))
 	p<-length(xcol)
 	q<-length(zcol)
@@ -396,7 +394,7 @@ mlmmmbd.em<-function(y,subj,pred,xcol,zcol,start,maxits=100,eps=.01){
 		       maxits,
 		       ggs,
 		       sflag)),
-		     intoutpt= as.integer(rep(0,(4+3*m))),
+		     intoutpt= integer(4+3*m),
 		     dbinput= as.double(c(pred,
 		       y,
 		       sigma,
@@ -404,7 +402,7 @@ mlmmmbd.em<-function(y,subj,pred,xcol,zcol,start,maxits=100,eps=.01){
 		       psi,
 		       eps,
 		       epsi)),
-		     dboutput= as.double(rep(0,times=r*nmax*r*nmax*10)),
+		     dboutput= numeric(r*nmax*r*nmax*10),
 	#
 		     w=array(0,c(r*nmax,r*nmax,m)),
 		     wkqb2=matrix(0,nmax,r),
