@@ -1,14 +1,16 @@
 Package: mlmmm
-Version: 0.2-1.1
-Date: 2007-05-27
-Title:  ML estimation under multivariate linear mixed models with missing values
-Author: Recai Yucel <yucel@schoolph.umass.edu>. 
-Maintainer: ORPHANED
-Description: Computational strategies for multivariate linear mixed-effects
-	     models with missing values, Schafer and Yucel (2002), Journal of Computational and Graphical Statistics, 11, 421-442.
-License: The software may be distributed free of charge and
- 	used by anyone if credit is given. It has been tested 
-	fairly well, but it comes with no guarantees and the 
-	authors assume no liability for its use or misuse
-URL: http://www-unix.oit.umass.edu/~yucel/
-Packaged: Mon Feb 23 11:44:09 2009; hornik
+Version: 0.3-1.2
+Date: 2010-07-07
+Title: ML estimation under multivariate linear mixed models with
+        missing values
+Author: Recai Yucel <ryucel@albany.edu>.
+Maintainer: Recai Yucel <ryucel@albany.edu>
+Description: Computational strategies for multivariate linear
+        mixed-effects models with missing values, Schafer and Yucel
+        (2002), Journal of Computational and Graphical Statistics, 11,
+        421-442.
+License: GPL-2
+URL: http://www.albany.edu/~ry491374
+Packaged: 2010-07-06 21:05:56 UTC; recaiyucel
+Repository: CRAN
+Date/Publication: 2010-07-07 06:09:45

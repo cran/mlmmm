@@ -185,6 +185,7 @@ library(mlmmm)
 data(adg)
 y<-cbind(adg$y.1,adg$y.2)
 colnames(y)=c("adg","initwt")
+subj=adg$subj
 # see the relationship between avd and intwt which are jointly modeled
 library(lattice)
 xyplot(y[,1]~log(y[,2]) | subj, ylab="Average Daily Gain",xlab="Initial Weight")
